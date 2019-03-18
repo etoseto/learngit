@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>事件委托</title>
+</head>
+<body>
+    <ul id="ul1">
+        <li>111</li>
+        <li>222</li>
+        <li>333</li>
+        <li>444</li>
+        <li>555</li>   
+    </ul>
+    <div id="box">
+        <input type="button" id="add" value="添加">
+        <input type="button" id="remove" value="删除">
+        <input type="button" id="move" value="移动">
+        <input type="button" id="select" value="选择">
+    </div>
+    <ul id="test">
+        <li><p>1111111</p></li>
+        <li><div>2222222</div></li>
+        <li><span>333333</span></li>
+        <li>444444</li>
+    </ul>
+    <script>
+        
+        window.onload=function(){
+            var oUl = document.getElementById('ul1');
+            oUl.onclick = function(ev){
+                var ev = ev || window.event;
+                var target = ev.target || event.srcElement;
+                if(target.nodeName.toLowerCase() == 'li'){
+                    alert(target.innerHTML)
+                }
+            }
+            var oBox = document.getElementById('box');
+            oBox.onclick = function(ev){
+                var ev = ev || window.event;
+                var target = target || event.srcElement;
+                if(target.nodeName.toLowerCase() == 'input'){
+                    switch(target.id){
+                        case 'add':
+                            alert('添加');
+                            break;
+                        case 'remove':
+                            alert('移除');
+                            break;
+                        case 'move':
+                            alert('移动');
+                            break;
+                        case 'select':
+                            alert('选择');
+                            break;
+                    }
+                }
+            }
+            var oUl2 = document.getElementById('test');
+            oUl2.addEventListener('click',function(ev){
+                var target = ev.target;
+                while(target !== oUl2){
+                    if(target.tagName.toLowerCase() == 'li'){
+                        console.log('li click');
+                        break;
+                    }
+                    target = target.parentNode;
+                    console.log(target);
+                }
+                
+            })
+            
+            for(let i=1;i<=100;i++){
+                let f = i % 3 == 0,b = i % 5 == 0;
+                if(f && b){
+                    console.log('fizzbuzz')
+                }else if(b){
+                    console.log('buzz');
+                }else if(f){
+                    console.log('fizz');
+                }else{
+                    console.log(i);
+                }
+            }
+        }
+        
+    </script>
+</body>
+</html>
