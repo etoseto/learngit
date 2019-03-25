@@ -32,9 +32,6 @@ export default {
       schemeList: [{
         schemes:['蓝色','绿色','灰色'],
         type:['主']
-      }, {
-        schemes:['蓝色','绿色','灰色'],
-        type:['主']
       }]
     }
   },
